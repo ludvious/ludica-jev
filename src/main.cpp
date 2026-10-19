@@ -104,7 +104,7 @@ void drawGame(Font font, const Board& board, const Decision& last,
   BeginDrawing();
   ClearBackground(kBg);
 
-  DrawTextEx(font, "ludica-jev", {24, 10}, 30, 1, kText);
+  DrawTextEx(font, "2048-jev", {24, 10}, 30, 1, kText);
   std::string stats = "score " + std::to_string(board.score()) +
                       "   best " + std::to_string(best) +
                       "   max " + std::to_string(board.maxTile()) +
