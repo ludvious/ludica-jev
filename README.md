@@ -86,15 +86,6 @@ root so it is found (it falls back to the default font if missing).
 The model can be swapped (jevos → Laya → hosted Jev) by changing the base URL —
 all three speak the same `/v1/systemone` wire format.
 
-## Tests
-
-```bash
-ctest --test-dir build
-```
-
-Covers the board rules, expectimax legality/determinism, and the decision-model
-serialization/parsing/fallback.
-
 ## Benchmark
 
 Headless score comparison of the policies (no window; the decision model needs
