@@ -1,0 +1,10 @@
+build/
+build-*/
+.cache/
+compile_commands.json
+*.o
+
+# jevos sidecar (downloaded separately, ~1.4 GB — never commit)
+/jev
+jev-*.tar.gz
+jevos-*.zip
