@@ -112,6 +112,7 @@ std::optional<Decision> parseDecision(const std::string& body,
     if (!dir) return std::nullopt;
     d.move = *dir;
     d.confidence = ans.value("confidence", -1.0);
+    d.model = j.value("model", std::string{});
     if (ans.contains("probabilities")) {
       for (auto& [key, val] : ans["probabilities"].items()) {
         auto pd = directionFromString(key);

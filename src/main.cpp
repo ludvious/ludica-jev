@@ -59,30 +59,37 @@ void drawTileNumber(Font font, int v, int cx, int cy, int size, Color c) {
 
 void drawPanel(Font font, const Decision& last, const char* policyName) {
   //DrawTextEx(font, "AI MOVES", {kPanelX, kPanelY}, 14, 1, kText);
-  DrawTextEx(font, policyName, {kPanelX, kPanelY + 18}, 18, 1, kText);
+  // Show the model that actually answered, not the request alias.
+  std::string shown = last.model.empty() ? std::string(policyName)
+                                         : "decision-model(" + last.model + ")";
+  DrawTextEx(font, shown.c_str(), {kPanelX, kPanelY + 18}, 18, 1, kText);
 
+  int y = kPanelY + 44;
   std::string moveLine = "move: " + std::string(directionName(last.move));
-  DrawTextEx(font, moveLine.c_str(), {kPanelX, kPanelY + 44}, 16, 1, kText);
+  DrawTextEx(font, moveLine.c_str(), {(float)kPanelX, (float)y}, 16, 1, kText);
+  y += 22;
 
   char buf[64];
   if (last.fallback) {
-    DrawTextEx(font, "fallback (no server)", {kPanelX, kPanelY + 66}, 16, 1, RED);
+    DrawTextEx(font, "fallback (no server)", {(float)kPanelX, (float)y}, 16, 1, RED);
     return;
   }
 
   bool hasInfo = last.confidence >= 0.0;
   if (!hasInfo) {
-    DrawTextEx(font, "search policy - no model info", {kPanelX, kPanelY + 66}, 15, 1, kText);
+    DrawTextEx(font, "search policy - no model info", {(float)kPanelX, (float)y}, 15, 1, kText);
     return;
   }
 
   snprintf(buf, sizeof buf, "conf: %.2f", last.confidence);
-  DrawTextEx(font, buf, {kPanelX, kPanelY + 66}, 16, 1, kText);
+  DrawTextEx(font, buf, {(float)kPanelX, (float)y}, 16, 1, kText);
+  y += 22;
   snprintf(buf, sizeof buf, "latency: %.0f ms", last.latencyMs);
-  DrawTextEx(font, buf, {kPanelX, kPanelY + 88}, 16, 1, kText);
+  DrawTextEx(font, buf, {(float)kPanelX, (float)y}, 16, 1, kText);
+  y += 26;
 
   const Direction dirs[4] = {Direction::Up, Direction::Down, Direction::Left, Direction::Right};
-  int barY = kPanelY + 118;
+  int barY = y;
   for (int i = 0; i < 4; ++i) {
     Direction d = dirs[i];
     double p = last.probabilities[dirIndex(d)];

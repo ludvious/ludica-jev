@@ -28,6 +28,7 @@ struct Decision {
   std::array<double, 4> probabilities{};  // per dirIndex(); 0 = unavailable
   double latencyMs = 0.0;
   bool fallback = false;                  // model was down or unusable
+  std::string model;                      // served model name, if reported
 };
 
 // A MovePolicy decides the next swipe for a given board.
