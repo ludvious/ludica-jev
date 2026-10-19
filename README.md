@@ -1,6 +1,9 @@
 # ludica-jev
 
-A 2048 game whose AI plays itself, built to study how far a text-based
+Game whose AI plays itself, built to study how far a text-based.
+
+Games actually implemented: 2048
+
 **decision model** (jevos, a local Jev-compatible model) gets on a game that a
 real search AI (expectimax) can play well.
 
