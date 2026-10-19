@@ -4,6 +4,8 @@ A 2048 game whose AI plays itself, built to study how far a text-based
 **decision model** (jevos, a local Jev-compatible model) gets on a game that a
 real search AI (expectimax) can play well.
 
+![ludica-jev game window: a 2048 board with the decision panel showing the model's move, confidence, latency, and per-move probabilities](assets/2048.png)
+
 Two policies sit behind one `MovePolicy` interface:
 
 | Policy | What it is | Status |
